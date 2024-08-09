@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "754889930533",
+    "project_id": "quickfood-bfd75",
+    "storage_bucket": "quickfood-bfd75.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754889930533:android:9575f7cf33f80505f44ccc",
+        "android_client_info": {
+          "package_name": "com.example.snack_time"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3N0TS-Aq_BXc0N86Rj8TMPO3J_oR4pbM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
