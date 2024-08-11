@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:snack_time/page/cart.dart';
 
 import 'home.dart';
 import 'order.dart';
@@ -19,7 +20,7 @@ class _BottomNavState extends State<BottomNav> {
   late Home homePage;
   late Order orderPage;
   late Profile profilePage;
-  late Wallet walletPage;
+  late Cart cartPage;
   int currentTabIndex = 0;
 
   
@@ -29,8 +30,8 @@ class _BottomNavState extends State<BottomNav> {
     homePage = Home();
     orderPage = Order();
     profilePage = Profile();
-    walletPage = Wallet();
-    pages = [homePage, orderPage, walletPage, profilePage];
+    cartPage = Cart();
+    pages = [homePage, orderPage, cartPage, profilePage];
     super.initState();
   }
 
@@ -50,12 +51,12 @@ class _BottomNavState extends State<BottomNav> {
           items: [
             Icon(Icons.home_outlined, color: Colors.white),
 
-            Icon(            Icons.shopping_bag_outlined,
+            Icon(     Icons.shopping_bag_outlined,
               color: Colors.white,
             ),
 
             Icon(
-              Icons.wallet_rounded,
+              Icons.shopping_cart_outlined,
               color: Colors.white,
             ),
             

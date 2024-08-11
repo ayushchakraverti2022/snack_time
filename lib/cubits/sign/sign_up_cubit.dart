@@ -31,7 +31,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   void updateDatbase(String email, String name) async {
     try {
       String uid = FirebaseAuth.instance.currentUser!.uid;
-      DatabaseReference ref = FirebaseDatabase.instance.ref("users/${uid}");
+      DatabaseReference ref = FirebaseDatabase.instance.ref("Users/${uid}");
 
       await ref.set({"name": name, "email": email});
       emit(SignedUpState());

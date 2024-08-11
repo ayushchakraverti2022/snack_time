@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:snack_time/cubits/logincubit/login_cubit.dart';
+import 'package:snack_time/cubits/login/login_cubit.dart';
 import 'package:snack_time/page/forgotpassword.dart';
 import 'package:snack_time/widget/widget_support.dart';
 

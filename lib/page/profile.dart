@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:snack_time/admin/admin_login.dart';
-import 'package:snack_time/admin/home_admin.dart';
+import 'package:snack_time/page/onboard.dart';
+import 'package:snack_time/page/signup.dart';
 import 'package:snack_time/widget/widget_support.dart';
 
 class Profile extends StatefulWidget {
@@ -12,6 +15,25 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  String userId = FirebaseAuth.instance.currentUser!.uid.toString();
+  String name = "";
+  String email = "";
+  @override
+  void initState() {
+   
+    FirebaseDatabase.instance
+        .ref()
+        .child("Users")
+        .child(userId)
+        .get()
+        .then((onValue) {
+      name = onValue.child("name").value.toString();
+      email = onValue.child("email").value.toString();
+      setState(() {});
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +77,7 @@ class _ProfileState extends State<Profile> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Ayush Chakraverti",
+                       name,
                         style: AppWidget.profilefont(),
                       )
                     ],
@@ -95,8 +117,8 @@ class _ProfileState extends State<Profile> {
                             "Name",
                             style: AppWidget.profileFieldfont(),
                           ),
-                          Text(
-                            "Ayush Chakravertti",
+                          Text(                            
+                            name,
                             style: AppWidget.profileFieldfont(),
                           )
                         ],
@@ -139,7 +161,7 @@ class _ProfileState extends State<Profile> {
                             style: AppWidget.profileFieldfont(),
                           ),
                           Text(
-                            "ayush2020www@gmail.com",
+                            email,
                             style: AppWidget.profileFieldfont(),
                           )
                         ],
@@ -235,38 +257,49 @@ class _ProfileState extends State<Profile> {
             SizedBox(
               height: 10,
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              child: Material(
-                borderRadius: BorderRadius.circular(10),
-                elevation: 2,
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 15,
-                    horizontal: 10,
-                  ),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.delete,
-                        color: Colors.black,
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Delete account",
-                            style: AppWidget.semiBoldTextFeildStyle(),
-                          ),
-                        ],
-                      )
-                    ],
+            GestureDetector(
+              onTap: () {
+                FirebaseDatabase.instance
+                    .ref()
+                    .child("Users")
+                    .child(userId)
+                    .remove();
+                FirebaseAuth.instance.signOut();
+                Get.offAll(Onboard());
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                child: Material(
+                  borderRadius: BorderRadius.circular(10),
+                  elevation: 2,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 15,
+                      horizontal: 10,
+                    ),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.delete,
+                          color: Colors.black,
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Delete account",
+                              style: AppWidget.semiBoldTextFeildStyle(),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -274,38 +307,44 @@ class _ProfileState extends State<Profile> {
             SizedBox(
               height: 10,
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              child: Material(
-                borderRadius: BorderRadius.circular(10),
-                elevation: 2,
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 15,
-                    horizontal: 10,
-                  ),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.logout,
-                        color: Colors.black,
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Logout",
-                            style: AppWidget.semiBoldTextFeildStyle(),
-                          ),
-                        ],
-                      )
-                    ],
+            GestureDetector(
+              onTap: () {
+                FirebaseAuth.instance.signOut();
+                Get.offAll(SignUp());
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                child: Material(
+                  borderRadius: BorderRadius.circular(10),
+                  elevation: 2,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 15,
+                      horizontal: 10,
+                    ),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.logout,
+                          color: Colors.black,
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Logout",
+                              style: AppWidget.semiBoldTextFeildStyle(),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

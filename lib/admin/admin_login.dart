@@ -19,18 +19,18 @@ class _AdminLoginState extends State<AdminLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFededeb),
+      backgroundColor: const Color(0xFFededeb),
       body: Container(
         child: Stack(
           children: [
             Container(
               margin:
                   EdgeInsets.only(top: MediaQuery.of(context).size.height / 2),
-              padding: EdgeInsets.only(top: 45.0, left: 20.0, right: 20.0),
+              padding: const EdgeInsets.only(top: 45.0, left: 20.0, right: 20.0),
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                       colors: [Color.fromARGB(255, 53, 51, 51), Colors.black],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight),
@@ -39,19 +39,19 @@ class _AdminLoginState extends State<AdminLogin> {
                           MediaQuery.of(context).size.width, 110.0))),
             ),
             Container(
-              margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 60.0),
+              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 60.0),
               child: Form(
                   key: _formkey,
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                         "Let's start with\nAdmin!",
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25.0,
                             fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30.0,
                       ),
                       Material(
@@ -65,17 +65,17 @@ class _AdminLoginState extends State<AdminLogin> {
                           ),
                           child: Column(
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 height: 50.0,
                               ),
                               Container(
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                     left: 20.0, top: 5.0, bottom: 5.0),
-                                margin: EdgeInsets.symmetric(horizontal: 20.0),
+                                margin: const EdgeInsets.symmetric(horizontal: 20.0),
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                         color:
-                                            Color.fromARGB(255, 160, 160, 147)),
+                                            const Color.fromARGB(255, 160, 160, 147)),
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Center(
                                   child: TextFormField(
@@ -85,7 +85,7 @@ class _AdminLoginState extends State<AdminLogin> {
                                         return 'Please Enter Username';
                                       }
                                     },
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                         border: InputBorder.none,
                                         hintText: "Username",
                                         hintStyle: TextStyle(
@@ -94,17 +94,17 @@ class _AdminLoginState extends State<AdminLogin> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 40.0,
                               ),
                               Container(
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                     left: 20.0, top: 5.0, bottom: 5.0),
-                                margin: EdgeInsets.symmetric(horizontal: 20.0),
+                                margin: const EdgeInsets.symmetric(horizontal: 20.0),
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                         color:
-                                            Color.fromARGB(255, 160, 160, 147)),
+                                            const Color.fromARGB(255, 160, 160, 147)),
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Center(
                                   child: TextFormField(
@@ -114,7 +114,7 @@ class _AdminLoginState extends State<AdminLogin> {
                                         return 'Please Enter Password';
                                       }
                                     },
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                         border: InputBorder.none,
                                         hintText: "Password",
                                         hintStyle: TextStyle(
@@ -123,22 +123,22 @@ class _AdminLoginState extends State<AdminLogin> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 40.0,
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  Get.to(HomeAdmin());
+                                  Get.to(const HomeAdmin());
                                 },
                                 child: Container(
-                                  padding: EdgeInsets.symmetric(vertical: 12.0),
+                                  padding: const EdgeInsets.symmetric(vertical: 12.0),
                                   margin:
-                                      EdgeInsets.symmetric(horizontal: 20.0),
+                                      const EdgeInsets.symmetric(horizontal: 20.0),
                                   width: MediaQuery.of(context).size.width,
                                   decoration: BoxDecoration(
                                       color: Colors.black,
                                       borderRadius: BorderRadius.circular(10)),
-                                  child: Center(
+                                  child: const Center(
                                     child: Text(
                                       "LogIn",
                                       style: TextStyle(

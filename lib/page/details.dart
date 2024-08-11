@@ -1,6 +1,8 @@
-import 'dart:ffi';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:snack_time/controllers/add_food_to_cart.dart';
+import 'package:snack_time/models/addcartfood.dart';
 import 'package:snack_time/widget/widget_support.dart';
 
 class Details extends StatefulWidget {
@@ -21,14 +23,18 @@ class Details extends StatefulWidget {
 }
 
 class _DetailsState extends State<Details> {
+   String userId = FirebaseAuth.instance.currentUser!.uid.toString();
   int count = 1;
   late int amount;
+  String uid = FirebaseAuth.instance.currentUser!.uid.toString();
   @override
   void initState() {
     amount = int.parse(widget.price);
     super.initState();
   }
 
+  AddFoodToCartController addFoodToCartController =
+      Get.put(AddFoodToCartController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -161,35 +167,52 @@ class _DetailsState extends State<Details> {
                       style: AppWidget.semiBoldTextFeildStyle(),
                     ),
                     Text(
-                      "\$"+ amount.toString(),
+                      "\$" + amount.toString(),
                       style: AppWidget.HeadlineTextFeildStyle(),
                     ),
                   ],
                 ),
-                Container(
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(5)),
-                    margin: const EdgeInsets.only(right: 5),
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            "Add to cart ",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.0,
-                                fontFamily: 'Poppins'),
-                          ),
-                          Icon(
-                            Icons.shopping_cart_outlined,
-                            color: Colors.white,
-                            size: 25,
-                          )
-                        ],
-                      ),
-                    )),
+                GestureDetector(
+                  onTap: () async {
+                    AddFoodToCartModel addFoodToCartModel =
+                        AddFoodToCartModel();
+                    addFoodToCartModel.itemName = widget.name;
+                    addFoodToCartModel.itemCount = count.toString();
+                    addFoodToCartModel.itemDetail = widget.detail;
+                    addFoodToCartModel.itemTotalPrice = amount.toString();
+                    addFoodToCartModel.itemPrice = widget.price;
+                    addFoodToCartModel.itemImage = widget.image;
+
+                    String message = await addFoodToCartController
+                        .uploadToDatabase(addFoodToCartModel, uid);
+                   ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("${message}")));
+                  },
+                  child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(5)),
+                      margin: const EdgeInsets.only(right: 5),
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              "Add to cart ",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16.0,
+                                  fontFamily: 'Poppins'),
+                            ),
+                            Icon(
+                              Icons.shopping_cart_outlined,
+                              color: Colors.white,
+                              size: 25,
+                            )
+                          ],
+                        ),
+                      )),
+                ),
               ],
             ),
             const SizedBox(
