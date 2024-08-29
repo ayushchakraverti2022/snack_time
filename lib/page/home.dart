@@ -263,7 +263,7 @@ class _HomeState extends State<Home> {
                                             .elementAt(index)
                                             .child("detail")
                                             .value
-                                            .toString().substring(0, 20)+"...",
+                                            .toString().substring(0, 19)+"...",
                                         style: AppWidget.LightTextFeildStyle(),
                                       ),
                                     ),
