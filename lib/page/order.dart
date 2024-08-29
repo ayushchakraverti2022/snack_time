@@ -83,9 +83,12 @@ class _OrderState extends State<Order>
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            dbSnapshot.elementAt(index).child("name").value.toString(),
-                            style: AppWidget.profileFieldfont(),
+                          Container(
+                            width: 155,
+                            child: Text(
+                              dbSnapshot.elementAt(index).child("name").value.toString(),
+                              style: AppWidget.profileFieldfont(),
+                            ),
                           ),
                           Text(
                             "\$ "+dbSnapshot.elementAt(index).child("total price").value.toString(),

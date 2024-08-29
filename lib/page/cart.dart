@@ -123,13 +123,16 @@ class _CartState extends State<Cart> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              dbSnapshot
-                                  .elementAt(index)
-                                  .child("name")
-                                  .value
-                                  .toString(),
-                              style: AppWidget.profileFieldfont(),
+                            Container(
+                              width: 150,
+                              child: Text(
+                                dbSnapshot
+                                    .elementAt(index)
+                                    .child("name")
+                                    .value
+                                    .toString(),
+                                style: AppWidget.profileFieldfont(),
+                              ),
                             ),
                             Text(
                               "\$ " +
