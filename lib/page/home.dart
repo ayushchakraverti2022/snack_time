@@ -126,21 +126,27 @@ class _HomeState extends State<Home> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  dbSnapshot
-                                      .elementAt(index)
-                                      .child("name")
-                                      .value
-                                      .toString(),
-                                  style: AppWidget.semiBoldTextFeildStyle(),
+                                Container(
+                                  width: 165,
+                                  child: Text(
+                                    dbSnapshot
+                                        .elementAt(index)
+                                        .child("name")
+                                        .value
+                                        .toString(),
+                                    style: AppWidget.semiBoldTextFeildStyle(),
+                                  ),
                                 ),
-                                Text(
-                                  dbSnapshot
-                                      .elementAt(index)
-                                      .child("detail")
-                                      .value
-                                      .toString(),
-                                  style: AppWidget.LightTextFeildStyle(),
+                                Container(
+                                  width: 160,
+                                  child: Text(
+                                    dbSnapshot
+                                        .elementAt(index)
+                                        .child("detail")
+                                        .value
+                                        .toString(),
+                                    style: AppWidget.LightTextFeildStyle(),
+                                  ),
                                 ),
                                 Text(
                                     "\$" +
@@ -209,9 +215,11 @@ class _HomeState extends State<Home> {
                     Padding(
                       padding: const EdgeInsets.only(top: 10.0, right: 10),
                       child: Material(
+                        
                         elevation: 5,
                         borderRadius: BorderRadius.circular(10),
-                        child: Container(
+                        child: Container( 
+
                           padding: EdgeInsets.all(8),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
@@ -237,21 +245,27 @@ class _HomeState extends State<Home> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      dbSnapshot
-                                          .elementAt(index)
-                                          .child("name")
-                                          .value
-                                          .toString(),
-                                      style: AppWidget.semiBoldTextFeildStyle(),
+                                    Container(
+                                      width: 150,
+                                      child: Text(
+                                        dbSnapshot
+                                            .elementAt(index)
+                                            .child("name")
+                                            .value
+                                            .toString().substring(0,9)+"...",
+                                        style: AppWidget.semiBoldTextFeildStyle(),
+                                      ),
                                     ),
-                                    Text(
-                                      dbSnapshot
-                                          .elementAt(index)
-                                          .child("detail")
-                                          .value
-                                          .toString(),
-                                      style: AppWidget.LightTextFeildStyle(),
+                                    Container(
+                                      width: 150,
+                                      child: Text(
+                                        dbSnapshot
+                                            .elementAt(index)
+                                            .child("detail")
+                                            .value
+                                            .toString().substring(0, 20)+"...",
+                                        style: AppWidget.LightTextFeildStyle(),
+                                      ),
                                     ),
                                     Text(
                                         "\$" +
@@ -318,9 +332,7 @@ class _HomeState extends State<Home> {
         ),
         const SizedBox(height: 5),
         showItems(),
-        // SingleChildScrollView(
-        // scrollDirection: Axis.horizontal,
-        // child:
+        
         Expanded(
           child: Container(
             width: MediaQuery.of(context).size.width,
